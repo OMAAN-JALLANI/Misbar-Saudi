@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Process & Quality</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: #0c0c18;
+    color: #fff;
+    overflow-x: hidden;
+  }
+   :root {
+      --primary: #0B3C5D;
+      --secondary: #1F4E79;
+      --accent: #00B8D9;
+      --bg-dark: #050B13;
+      --bg-light: #F4F6F8;
+      --text-dark: #111827;
+      --text-light: #FFFFFF;
+      --muted: #9CA3AF;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    }
+ 
+    /* Navbar */
+    .navbar {
+      background: rgba(5, 11, 19, 0.95);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 0.75rem 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-box {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text-light);
+    }
+
+    .nav-logo span {
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 0.25rem;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-light);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-btn {
+      background: var(--accent);
+      color: #001018;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      border: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease,
+        background 0.15s ease;
+      box-shadow: 0 10px 25px rgba(0, 184, 217, 0.25);
+    }
+
+    .nav-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 35px rgba(0, 184, 217, 0.35);
+      background: #16c4e3;
+    }
+
+.logo-shadow {
+   height: 55px;
+  width: 150px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.35);
+  padding: 4px;
+  background: #ffffff;
+}
+
+
+
+  /* Heading Section */
+  .heading-section {
+    text-align: center;
+    padding: 50px 20px 30px 20px;
+  }
+
+  .heading-section h1 { font-size: 3rem; color: #ffffff; margin-bottom: 10px; }
+  .heading-section h2 { font-size: 1.5rem; color: #3687e2; margin-bottom: 20px; font-weight: 400; }
+  .heading-section p { max-width: 900px; margin: 0 auto; font-size: 1.1rem; color: #ddd; line-height: 1.6; }
+
+  /* Marquee Layers */
+  .marquee-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 40px 0;
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 20px;
+  }
+
+  .marquee-track img {
+    height: 150px;
+    border-radius: 15px;
+    filter: brightness(0.4);
+    transition: transform 0.3s, filter 0.3s;
+    object-fit: cover;
+    cursor: pointer;
+  }
+
+  .marquee-track img:hover { filter: brightness(1); transform: scale(1.05); }
+
+  /* Marquee Animations */
+  @keyframes move-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  @keyframes move-right { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+
+  .marquee-upper { animation: move-right 120s linear infinite; }
+  .marquee-lower { animation: move-left 140s linear infinite; }
+
+  /* Quality Highlights Section */
+  .highlights-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 50px auto;
+    gap: 30px;
+  }
+
+  .highlights-left { flex: 1; min-width: 300px; }
+  .highlights-left h2 { font-size: 2rem; color: #0096ff; margin-bottom: 20px; }
+  .highlights-left ul { list-style: disc; padding-left: 20px; color: #fff; }
+  .highlights-left li { font-size: 1.1rem; margin-bottom: 10px; }
+  .highlights-right { flex: 1; min-width: 300px; }
+  .highlights-right img { width: 100%; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.5); object-fit: cover; }
+/* ISO Main Section */
+.iso-section {
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.iso-section h2 {
+  font-size: 2.7rem;
+  color: #00B8D9;
+  margin-bottom: 50px;
+  text-shadow: 0 0 12px rgba(0, 184, 217, 0.6);
+  letter-spacing: 1px;
+}
+
+/* ISO Cards Wrapper */
+.iso-cards {
+  display: flex;
+  gap: 35px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Single ISO Card */
+.iso-card {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(18px);
+  border: 2px solid rgba(0,184,217,0.4);
+  border-radius: 20px;
+
+  width: 260px;
+  padding: 25px 20px;
+  text-align: center;
+
+  transition: 
+    transform 0.45s ease,
+    box-shadow 0.45s ease,
+    border-color 0.45s ease;
+
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* Glow Layer */
+.iso-card::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: radial-gradient(circle, rgba(0,184,217,0.35), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+/* Light Sweep Effect */
+.iso-card::after {
+  content: "";
+  position: absolute;
+  width: 80%;
+  height: 100%;
+  top: 0;
+  left: -150%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+  transform: skewX(-25deg);
+  transition: 0.8s ease;
+}
+
+/* Hover Effects */
+.iso-card:hover {
+  transform: translateY(-12px) scale(1.05) rotate3d(1,1,0,6deg);
+  border-color: #00B8D9;
+  box-shadow: 0 18px 35px rgba(0,184,217,0.55);
+}
+
+.iso-card:hover::before {
+  opacity: 1;
+}
+
+.iso-card:hover::after {
+  left: 150%;
+}
+
+/* ISO Image */
+.iso-card img {
+  width: 120px;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 0 8px rgba(255,255,255,0.3));
+  transition: transform 0.5s ease;
+}
+
+.iso-card:hover img {
+  transform: scale(1.12);
+}
+
+/* Text Styling */
+.iso-card h3 {
+  font-size: 1.3rem;
+  color: #ffffff;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.iso-card p {
+  font-size: 0.95rem;
+  color: #d7d7d7;
+  line-height: 1.45;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .iso-card {
+    width: 90%;
+  }
+
+  .iso-card img {
+    width: 90px;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+  <header class="navbar">
+    <div class="nav-logo">
+  <img class="logo-shadow" src="../Images/logo.webp" alt="Misbar Logo"> 
+</div>
+
+    <nav class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="./About.html">About</a>
+      <a href="./Product.html">Products</a>
+      <a href="./Quality.html">Quality</a>
+      <a href="./Contact.html">Contact</a>
+      <a href="./CTA.html" class="nav-btn" style="color: white;">Get in touch</a>
+    </nav>
+  </header>
+
+<!-- Heading -->
+<section class="heading-section">
+  <h1>Process & Quality</h1>
+  <h2>Precision refining, proven reliability.</h2>
+  <p>
+    At Misbar, every stage of production is managed under strict process control to ensure product integrity and consistency. 
+    Our operations follow international standards in safety, environmental protection, and product testing. 
+    Our refining process includes feedstock selection, distillation, desulphurisation, and final polishing to achieve target viscosity, colour, and purity. 
+    Samples are tested in our in-house laboratory before release to confirm conformity with client and regulatory specifications. 
+    We work under ChemRef Holdings' integrated quality framework, promoting traceability, risk management, and continuous improvement across all plants.
+  </p>
+</section>
+
+<!-- Upper Marquee -->
+<div class="marquee-container">
+  <div class="marquee-track marquee-upper">
+    <img src="../Images/1.webp" width="200" alt="Plant 1">
+    <img src="../Images/2.webp" width="250" alt="Plant 2">
+    <img src="../Images/3.webp" width="220" alt="Lab 1">
+    <img src="../Images/4.webp" width="260" alt="Lab 2">
+    <img src="../Images/5.webp" width="240" alt="Plant 3">
+    <img src="../Images/6.webp" width="230" alt="Product 1">
+    <img src="../Images/7.webp" width="210" alt="Product 2">
+    <img src="../Images/8.webp" width="250" alt="Lab 3">
+    <img src="../Images/9.webp" width="220" alt="Lab 4">
+    <img src="../Images/10.webp" width="240" alt="Product 3">
+  </div>
+</div>
+
+<!-- Lower Marquee -->
+<div class="marquee-container">
+  <div class="marquee-track marquee-lower">
+    <img src="../Images/31.webp" width="260" alt="Plant 4">
+    <img src="../Images/32.webp" width="200" alt="Plant 5">
+    <img src="../Images/33.webp" width="240" alt="Lab 5">
+    <img src="../Images/35.webp" width="220" alt="Product 4">
+    <img src="../Images/34.webp" width="230" alt="Product 5">
+    <img src="../Images/36.jpeg" width="250" alt="Plant 6">
+    <img src="../Images/37.jpeg" width="210" alt="Lab 6">
+    <img src="../Images/38.jpeg" width="200" alt="Product 6">
+    <img src="../Images/39.jpeg" width="260" alt="Product 7">
+    <img src="../Images/30.jpeg" width="230" alt="Product 8">
+  </div>
+</div>
+
+<!-- Quality Highlights -->
+<section class="highlights-section">
+  <div class="highlights-left">
+    <h2>Quality Highlights</h2>
+    <ul>
+      <li>ISO-aligned production controls.</li>
+      <li>Full batch traceability and record-keeping.</li>
+      <li>Regular calibration and equipment maintenance.</li>
+      <li>Product certification available upon request.</li>
+    </ul>
+  </div>
+  <div class="highlights-right">
+    <img src="../Images/34.webp" alt="Lab Equipment">
+  </div>
+</section>
+
+<!-- ISO Section -->
+<section class="iso-section">
+  <h2>ISO Certifications</h2>
+  <div class="iso-cards">
+
+    <div class="iso-card">
+      <img src="../Images/9001.webp" alt="ISO 9001">
+      <h3>ISO 9001</h3>
+      <p>Quality management system ensuring consistent product standards.</p>
+    </div>
+
+    <div class="iso-card">
+      <img src="../Images/14001.webp" alt="ISO 14001">
+      <h3>ISO 14001</h3>
+      <p>Environmental management system for sustainable operations.</p>
+    </div>
+
+    <div class="iso-card">
+      <img src="../Images/45001.webp" alt="ISO 45001">
+      <h3>ISO 45001</h3>
+      <p>Occupational health and safety management system.</p>
+    </div>
+
+  </div>
+</section>
+
+
+</body>
+</html>

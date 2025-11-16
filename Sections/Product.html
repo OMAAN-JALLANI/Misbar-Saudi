@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products – Misbar Energy</title>
+
+<style>
+    :root {
+      --primary: #0B3C5D;
+      --secondary: #1F4E79;
+      --accent: #00B8D9;
+      --bg-dark: #050B13;
+      --bg-light: #F4F6F8;
+      --text-dark: #111827;
+      --text-light: #FFFFFF;
+      --muted: #9CA3AF;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    }
+
+     
+
+    /* Navbar */
+    .navbar {
+      background: rgba(5, 11, 19, 0.95);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 0.75rem 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-box {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text-light);
+    }
+
+    .nav-logo span {
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 0.25rem;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-light);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+.logo-shadow {
+   height: 55px;
+  width: 150px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.35);
+  padding: 4px;
+  background: #ffffff;
+}
+    .nav-btn {
+      background: var(--accent);
+      color: #001018;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      border: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease,
+        background 0.15s ease;
+      box-shadow: 0 10px 25px rgba(0, 184, 217, 0.25);
+    }
+
+    .nav-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 35px rgba(0, 184, 217, 0.35);
+      background: #16c4e3;
+    }
+body {
+  margin:0;
+  background:#07131f;
+  font-family:system-ui;
+  color:#fff;
+}
+
+.container {
+  width:90%;
+  margin:40px auto;
+}
+
+h1 {
+  text-align:center;
+  margin-bottom:10px;
+  font-size:2.3rem;
+}
+
+p.topsub {
+  text-align:center;
+  color:#aab0b7;
+  margin-bottom:40px;
+}
+
+/* Cards grid */
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+  gap:25px;
+}
+
+/* Card */
+.card {
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:14px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:.3s;
+  backdrop-filter:blur(10px);
+}
+
+.card:hover {
+  transform:translateY(-8px);
+  box-shadow:0 20px 40px rgba(0,0,0,0.5);
+}
+
+.card img {
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+
+.card-content {
+  padding:15px 18px;
+}
+
+.card-title {
+  font-size:1.2rem;
+  margin-bottom:6px;
+  color:#00bcd4;
+}
+
+.card-desc {
+  font-size:.9rem;
+  color:#b5bbc4;
+  line-height:1.45;
+}
+
+/* Overlay */
+.overlay {
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  pointer-events:none;
+  transition:.4s;
+  backdrop-filter:blur(10px);
+}
+
+.overlay.active {
+  opacity:1;
+  pointer-events:auto;
+}
+
+/* Popup panel */
+.panel {
+  width:92%;
+  max-width:750px;
+  background:#0d1b2a;
+  border-radius:18px;
+  padding:25px;
+  border:1px solid rgba(255,255,255,0.15);
+  transform:translateY(50px);
+  opacity:0;
+  transition:.4s;
+
+  /* NEW FIX */
+  max-height:80vh;         /* panel screen se bahar na nikle */
+  overflow-y:auto;         /* andar scroll enable */
+  scrollbar-width:thin;    /* firefox */
+}
+
+/* Scrollbar for chrome */
+.panel::-webkit-scrollbar {
+  width:6px;
+}
+.panel::-webkit-scrollbar-thumb {
+  background:#00bcd4;
+  border-radius:10px;
+}
+
+
+.overlay.active .panel {
+  opacity:1;
+  transform:translateY(0);
+}
+
+.panel img {
+  width:100%;
+  height:260px;
+  object-fit:cover;
+  border-radius:12px;
+  margin-bottom:20px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.5);
+}
+
+.panel h2 {
+  margin:0 0 12px;
+  color:#00bcd4;
+}
+
+.panel p {
+  color:#c4c9d0;
+  line-height:1.55;
+  white-space:pre-line;
+  margin-bottom:10px;
+}
+
+.close {
+  padding:10px 20px;
+  background:#00bcd4;
+  color:#00141f;
+  border:none;
+  border-radius:30px;
+  font-weight:600;
+  cursor:pointer;
+  margin-top:10px;
+}
+
+
+
+/* FOOTER */
+.site-footer {
+  background: #050b13;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+  padding: 2.5rem 5vw 1.25rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.footer-top {
+  max-width: 1120px;
+  margin: 0 auto 1.75rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.footer-col h4 {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.footer-col a {
+  display: block;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.82rem;
+  margin-bottom: 0.4rem;
+  transition: color 0.15s ease;
+}
+
+.footer-col a:hover {
+  color: var(--accent);
+}
+
+.footer-text {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  margin-bottom: 0.6rem;
+  color: var(--muted);
+}
+
+.footer-bottom {
+  max-width: 1120px;
+  margin: 0 auto;
+  border-top: 1px solid rgba(148, 163, 184, 0.28);
+  padding-top: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-bottom-left {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.footer-bottom-left a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.8rem;
+  border-left: 1px solid rgba(148, 163, 184, 0.4);
+  padding-left: 0.75rem;
+}
+
+.footer-bottom-left a:hover {
+  color: var(--accent);
+}
+
+.footer-bottom-left span {
+  font-size: 0.78rem;
+}
+
+.footer-bottom-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footer-lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.footer-lang select {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 0.8rem;
+  outline: none;
+  padding-right: 0.5rem;
+  cursor: pointer;
+}
+
+.footer-lang option {
+  color: #111827;
+}
+
+.lang-icon {
+  font-size: 0.8rem;
+}
+
+@media (max-width: 900px) {
+  .footer-top {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-bottom-left {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-bottom-left a {
+    border-left: none;
+    padding-left: 0;
+  }
+}
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        padding-top: 2.5rem;
+      }
+
+      .hero-media {
+        order: -1;
+      }
+
+      .navbar {
+        padding-inline: 1.25rem;
+      }
+
+      .hero {
+        padding-inline: 1.25rem;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+
+      .footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+</style>
+</head>
+
+<body>
+ <!-- NAVBAR -->
+ <header class="navbar">
+    <div class="nav-logo">
+  <img class="logo-shadow" src="../Images/logo.webp" alt="Misbar Logo"> 
+</div>
+    <nav class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="./About.html">About</a>
+      <a href="./Product.html">Products</a>
+      <a href="./Quality.html">Quality</a>
+      <a href="./Contact.html">Contact</a>
+      <a href="./CTA.html" class="nav-btn" style="color: white;">Get in touch</a>
+    </nav>
+  </header>
+
+    <!-- MAIN CONTENT -->
+<div class="container">
+
+  <h1>Our Products</h1>
+  <p class="topsub">Explore some of our refined hydrocarbon products.</p>
+
+  <div class="grid">
+
+    <!-- CARD 1 -->
+    <div class="card" onclick="openPanel(1)">
+      <img src="../Images/chemical.webp">
+      <div class="card-content">
+        <div class="card-title">Precision-Refined Hydrocarbon Oils</div>
+        <div class="card-desc">
+          Wash oil is a derivative of petroleum product with high aromatic contents.
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="card" onclick="openPanel(2)">
+      <img src="../Images/chemical.webp">
+      <div class="card-content">
+        <div class="card-title">Base Oil SN 90</div>
+        <div class="card-desc">
+          Wash oil is a derivative of petroleum product with high aromatic contents.
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="card" onclick="openPanel(3)">
+      <img src="../Images/chemical.webp">
+      <div class="card-content">
+        <div class="card-title">Base Oil SN 70</div>
+        <div class="card-desc">
+          Wash oil is a derivative of petroleum product with high aromatic contents.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- POPUP -->
+<div class="overlay" id="overlay">
+  <div class="panel" id="panel">
+    <img id="bigImg">
+    <h2 id="bigTitle"></h2>
+    <p id="bigDetail"></p>
+    <button class="close" onclick="closePanel()">Close</button>
+  </div>
+</div>
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About Misbar</a>
+      <a href="#">Who We Are</a>
+      <a href="#">Quality &amp; Compliance</a>
+      <a href="#">Sustainability</a>
+    </div>
+    <div class="footer-col">
+      <h4>Products</h4>
+      <a href="#">Base Oils</a>
+      <a href="#">Hydrocarbon Blends</a>
+      <a href="#">Specialty Fluids</a>
+      <a href="#">Custom Solutions</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="#">Contact</a>
+      <a href="#">Sales Enquiries</a>
+      <a href="#">Technical Support</a>
+      <a href="#">Safety Data Sheets</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p class="footer-text">
+        Misbar Energy<br />
+        Industrial Area, Karachi<br />
+        Pakistan
+      </p>
+      <p class="footer-text">
+        Email: info@misbarenergy.com<br />
+        Phone: +92-000-0000000
+      </p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-left">
+      <span>© 2025 Misbar Energy. All rights reserved.</span>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+    </div>
+
+    <div class="footer-bottom-right">
+      <div class="footer-lang">
+        <span class="lang-icon">🌐</span>
+        <select aria-label="Language select">
+          <option selected>English (EN)</option> 
+          <option>العربية (AR)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+const overlay = document.getElementById("overlay");
+const bigImg = document.getElementById("bigImg");
+const bigTitle = document.getElementById("bigTitle");
+const bigDetail = document.getElementById("bigDetail");
+
+const productData = {
+  1: {
+    img: "./chemical.webp",
+    title: "Precision-Refined Hydrocarbon Oils",
+    desc: `These oils are processed with controlled sulphur, viscosity and colour.
+Applications:
+• White Oils  
+• Brown Oils  
+• Process Oils  
+• Hydrocarbon Blends`
+  },
+
+  2: {
+    img: "./chemical.webp",
+    title: "Base Oil SN 90",
+    desc: `Misbar manufactures and supplies a range of refined hydrocarbon products for industrial, chemical, and energy applications. Our refining process ensures consistent purity, viscosity, and performance across all grades.
+
+Product Range
+Brown Oil Series: Cleaning and flushing oils for maintenance and process operations.
+White Oil Series: Feedstocks refined for use in solvent production.
+Process Oils: Controlled-viscosity oils used in rubber, plastic, and lubricant blending.
+Hydrocarbon Blends: Custom formulations developed for industrial clients and applications.
+Technical Fluids: Light and medium fractions for manufacturing, treatment, and coating processes.
+Key Attributes
+Stable refining process ensuring consistency across all products.
+Controlled sulphur, colour, and viscosity parameters.
+Adaptable specifications based on customer and industry requirements.`
+  },
+
+  3: {
+    img: "./chemical.webp",
+    title: "Base Oil SN 70",
+    desc: `Medium-viscosity base oil for automotive & industrial use.
+Benefits:
+• Good oxidation stability  
+• Low sulphur  
+• Clean burning`
+  }
+};
+
+function openPanel(id) {
+  bigImg.src = productData[id].img;
+  bigTitle.textContent = productData[id].title;
+  bigDetail.textContent = productData[id].desc;
+  overlay.classList.add("active");
+}
+
+function closePanel() {
+  overlay.classList.remove("active");
+}
+</script>
+
+</body>
+</html>

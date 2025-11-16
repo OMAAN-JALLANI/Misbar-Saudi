@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Misbar Saudi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --primary: #0B3C5D;
+      --secondary: #1F4E79;
+      --accent: #00B8D9;
+      --bg-dark: #050B13;
+      --bg-light: #F4F6F8;
+      --text-dark: #111827;
+      --text-light: #FFFFFF;
+      --muted: #9CA3AF;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    }
+
+    body {
+      background: var(--bg-dark);
+      color: var(--text-light);
+    }
+
+    /* Navbar */
+    .navbar {
+      background: rgba(5, 11, 19, 0.95);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 0.75rem 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-box {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text-light);
+    }
+
+    .nav-logo span {
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 0.25rem;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-light);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-btn {
+      background: var(--accent);
+      color: #001018;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      border: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease,
+        background 0.15s ease;
+      box-shadow: 0 10px 25px rgba(0, 184, 217, 0.25);
+    }
+
+    .nav-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 35px rgba(0, 184, 217, 0.35);
+      background: #16c4e3;
+    }
+.logo-shadow {
+   height: 55px;
+  width: 150px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.35);
+  padding: 4px;
+  background: #ffffff;
+}
+    /* Hero Section */
+    .hero {
+      min-height: calc(100vh - 64px);
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 3rem;
+      padding: 4rem 5vw 3rem;
+      background: radial-gradient(circle at top left, #12263d, #050b13);
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2.3rem, 3vw + 1.2rem, 3.2rem);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .hero-highlight {
+      color: var(--accent);
+    }
+
+    .hero-subtitle {
+      color: var(--muted);
+      max-width: 32rem;
+      font-size: 0.98rem;
+      line-height: 1.6;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .badge {
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 0.25rem 0.75rem;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #001018;
+      padding: 0.75rem 1.6rem;
+      border-radius: 999px;
+      border: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease,
+        background 0.15s ease;
+      box-shadow: 0 18px 45px rgba(0, 184, 217, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 22px 55px rgba(0, 184, 217, 0.45);
+      background: #16c4e3;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--muted);
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 0.7rem 1.4rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease,
+        border-color 0.15s ease;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15, 23, 42, 0.6);
+      color: var(--text-light);
+      border-color: var(--accent);
+    }
+
+    .hero-meta {
+      margin-top: 1.25rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .hero-meta span strong {
+      color: var(--text-light);
+    }
+
+    /* Hero Right / Video Placeholder */
+    .hero-media {
+      align-self: stretch;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-card {
+      width: 100%;
+      max-width: 420px;
+      aspect-ratio: 16 / 10;
+      border-radius: 1.5rem;
+      background: radial-gradient(circle at top, var(--accent), #0b3c5d);
+      padding: 0.18rem;
+      position: relative;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+    }
+.video-bg{
+     
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+    .video-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 1.35rem;
+      background: radial-gradient(circle at top left, #111827, #020617);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .video-glow {
+      position: absolute;
+      inset: -30%;
+      background: radial-gradient(circle at center, rgba(0, 184, 217, 0.18), transparent 60%);
+      opacity: 0.9;
+    }
+
+    .play-button {
+      position: relative;
+      z-index: 1;
+      width: 72px;
+      height: 72px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+      transition: transform 0.15s ease, box-shadow 0.15s ease,
+        background 0.15s ease, border-color 0.15s ease;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.8);
+    }
+
+    .play-button::before {
+      content: "";
+      margin-left: 4px;
+      width: 0;
+      height: 0;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-left: 16px solid var(--accent);
+    }
+
+    .play-button:hover {
+      transform: translateY(-1px) scale(1.03);
+      border-color: var(--accent);
+      background: rgba(15, 23, 42, 0.95);
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.9);
+    }
+
+    .video-label {
+      position: absolute;
+      left: 1.2rem;
+      bottom: 1.1rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      z-index: 1;
+    }
+
+    .video-label-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.9);
+    }
+
+ .iso-strip {
+  padding: 2.5rem 5vw 2.75rem;
+  background: radial-gradient(circle at top, #0b3c5d, #050b13);
+}
+
+.iso-strip-inner {
+  max-width: 1024px;
+  margin: 0 auto;
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/*888888888888888888888888888888888888888*/
+
+:root {
+  --primary: #0B3C5D;
+  --secondary: #1F4E79;
+  --accent: #00B8D9;
+  --bg-dark: #050B13;
+  --text-light: #FFFFFF;
+}
+
+/* Section Styling */
+.sustainability-section {
+  max-width: 1200px;
+  margin: 70px auto;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.sustainability-section h2 {
+  color: var(--accent);
+  margin-bottom: 50px;
+  font-size: 2.7rem;
+  letter-spacing: 1px;
+  text-shadow: 0 0 12px rgba(0, 184, 217, 0.7);
+}
+
+/* Card Container */
+.sustainability-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 35px;
+  justify-content: center;
+}
+
+/* Glass Card */
+.card {
+  position: relative;
+  background: rgba(255,255,255,0.07);
+  backdrop-filter: blur(14px);
+  border: 2px solid rgba(0,184,217,0.4);
+  border-radius: 18px;
+  width: 260px;
+  height: 130px;
+  padding: 18px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+
+  transition: 
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+}
+
+/* Glow Pulse */
+.card-glow {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: radial-gradient(circle, rgba(0,184,217,0.35), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+/* Hover Animation */
+.card:hover {
+  transform: translateY(-12px) scale(1.05) rotate3d(1,1,0,6deg);
+  border-color: var(--accent);
+  box-shadow: 0 18px 30px rgba(0,184,217,0.55);
+}
+
+.card:hover .card-glow {
+  opacity: 1;
+}
+
+/* Light Sweep Animation */
+.card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+  transform: skewX(-25deg);
+  transition: 0.7s;
+}
+
+.card:hover::after {
+  left: 150%;
+}
+
+/* Inside content */
+.card-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.card-content img {
+  width: 60px;
+  height: 60px;
+}
+
+.card-text h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  color: var(--text-light);
+  font-weight: 600;
+}
+
+.card-text p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #d9d9d9;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+
+  .card {
+    width: 90%;
+    height: auto;
+    padding: 20px;
+  }
+
+  .card-content img {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* CARD STRUCTURE */
+.iso-card {
+  position: relative;
+  padding: 1rem;
+  border-radius: 1.1rem;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.55);
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  animation: isoFloat 6s ease-in-out infinite;
+}
+
+.iso-card-2 { animation-delay: 0.5s; }
+.iso-card-3 { animation-delay: 1s; }
+
+.iso-card::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background: radial-gradient(circle at top left,
+    rgba(0, 184, 217, 0.2),
+    transparent 60%);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* CONTENT LEFT */
+.iso-content {
+  position: relative;
+  z-index: 2;
+  width: 55%;
+}
+
+/* IMAGE RIGHT */
+.iso-img-box {
+  width: 45%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.iso-img-box img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.8rem;
+  object-fit: cover;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+/* TEXT STYLING */
+.iso-pill {
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  color: var(--accent);
+  font-size: 0.72rem;
+  letter-spacing: 0.09em;
+}
+
+.iso-card p {
+  margin-top: 0.55rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+/* FLOAT */
+@keyframes isoFloat {
+  0%,100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+}
+
+@media (max-width: 900px) {
+  .iso-strip-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .iso-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .iso-content,
+  .iso-img-box {
+    width: 100%;
+  }
+}
+
+
+/* FOOTER */
+.site-footer {
+  background: #050b13;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+  padding: 2.5rem 5vw 1.25rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.footer-top {
+  max-width: 1120px;
+  margin: 0 auto 1.75rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.footer-col h4 {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.footer-col a {
+  display: block;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.82rem;
+  margin-bottom: 0.4rem;
+  transition: color 0.15s ease;
+}
+
+.footer-col a:hover {
+  color: var(--accent);
+}
+
+.footer-text {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  margin-bottom: 0.6rem;
+  color: var(--muted);
+}
+
+.footer-bottom {
+  max-width: 1120px;
+  margin: 0 auto;
+  border-top: 1px solid rgba(148, 163, 184, 0.28);
+  padding-top: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-bottom-left {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.footer-bottom-left a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.8rem;
+  border-left: 1px solid rgba(148, 163, 184, 0.4);
+  padding-left: 0.75rem;
+}
+
+.footer-bottom-left a:hover {
+  color: var(--accent);
+}
+
+.footer-bottom-left span {
+  font-size: 0.78rem;
+}
+
+.footer-bottom-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footer-lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.footer-lang select {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 0.8rem;
+  outline: none;
+  padding-right: 0.5rem;
+  cursor: pointer;
+}
+
+.footer-lang option {
+  color: #111827;
+}
+
+.lang-icon {
+  font-size: 0.8rem;
+}
+
+@media (max-width: 900px) {
+  .footer-top {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-bottom-left {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-bottom-left a {
+    border-left: none;
+    padding-left: 0;
+  }
+}
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        padding-top: 2.5rem;
+      }
+
+      .hero-media {
+        order: -1;
+      }
+
+      .navbar {
+        padding-inline: 1.25rem;
+      }
+
+      .hero {
+        padding-inline: 1.25rem;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+
+      .footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="nav-logo">
+  <img class="logo-shadow" src="./Images/logo.webp" alt="Misbar Logo"> 
+</div>
+    <nav class="nav-links">
+      <a href="./index.html">Home</a>
+      <a href="./Sections/About.html">About</a>
+      <a href="./Sections/Product.html">Products</a>
+      <a href="./Sections/Quality.html">Quality</a>
+      <a href="./Sections/Contact.html">Contact</a>
+      <a href="./Sections/CTA.html" class="nav-btn" style="color: white;">Get in touch</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <main class="hero">
+    <section class="hero-content">
+      <div class="hero-badges">
+        <div class="badge">
+          <span class="badge-dot"></span>
+          Premium Base Oils
+        </div>
+        <div class="badge">
+          ISO Certified Plant
+        </div>
+      </div>
+
+      <h1>
+        High-Performance<br />
+        <span class="hero-highlight">Hydrocarbon Solutions</span>
+        for Modern Industries.
+      </h1>
+
+      <p class="hero-subtitle">
+        Misbar Energy develops reliable hydrocarbon blends and base oils,
+        optimized for performance, safety and consistent supply to regional and
+        global partners.
+      </p>
+
+      <div class="hero-actions">
+        <a href="./Product.html"><button class="btn-primary">Explore Products</button></a>
+        <a href="./Quality.html"><button class="btn-ghost">View Quality Standards</button></a>
+      </div>
+
+      <div class="hero-meta">
+        <span><strong>15+ years</strong> in hydrocarbon trading</span>
+        <span><strong>ISO 9001, 14001, 45001</strong> certified</span>
+      </div>
+    </section>
+
+    <!-- VIDEO / IMAGE CARD -->
+   <aside class="hero-media">
+  <div class="video-card">
+    
+
+    <div class="video-inner">
+      <div class="video-glow">
+        <video class="video-bg" autoplay muted loop playsinline >
+      <source src="./Misbar Saudi.mp4" type="video/mp4">
+    </video>
+      </div>
+       
+      <div class="video-label">
+        <span class="video-label-dot"></span>
+        Plant overview video
+      </div>
+    </div>
+  </div>
+</aside>
+
+  </main>
+
+<section class="sustainability-section">
+  <h2>Sustainability & Vision 2030 Commitment</h2>
+
+  <div class="sustainability-cards">
+
+    <div class="card">
+      <div class="card-glow"></div>
+      <div class="card-content"> 
+        <div class="card-text">
+          <h3>Localisation & Skills</h3>
+          <p>Developing Saudi talent and technical capability.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-glow"></div>
+      <div class="card-content">  
+        <div class="card-text">
+          <h3>Environmental Control</h3>
+          <p>Reducing emissions, managing waste, and improving efficiency.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-glow"></div>
+      <div class="card-content"> 
+        <div class="card-text">
+          <h3>Energy Efficiency</h3>
+          <p>Upgrading equipment and processes to cut consumption.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-glow"></div>
+      <div class="card-content"> 
+        <div class="card-text">
+          <h3>Process Innovation</h3>
+          <p>Refining cleaner, safer, and more efficient products.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-glow"></div>
+      <div class="card-content"> 
+        <div class="card-text">
+          <h3>Community Focus</h3>
+          <p>Supporting Vision 2030 through safe operations and local partnerships.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+  <!-- ISO HIGHLIGHT / ANIMATION SECTION -->
+<section class="iso-strip">
+  <div class="iso-strip-inner">
+
+    <!-- CARD 1 -->
+    <div class="iso-card iso-card-1">
+      <div class="iso-content">
+        <div class="iso-pill">ISO 9001</div>
+        <p>Quality Management<br>Certified Operations</p>
+      </div>
+      <div class="iso-img-box">
+        <img src="./Images/9001.webp" alt="ISO 9001">
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="iso-card iso-card-2">
+      <div class="iso-content">
+        <div class="iso-pill">ISO 14001</div>
+        <p>Environmental<br>Responsibility</p>
+      </div>
+      <div class="iso-img-box">
+        <img src="./Images/14001.webp" alt="ISO 14001">
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="iso-card iso-card-3">
+      <div class="iso-content">
+        <div class="iso-pill">ISO 45001</div>
+        <p>Occupational Health<br>& Safety</p>
+      </div>
+      <div class="iso-img-box">
+        <img src="./Images/45001.webp" alt="ISO 45001">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About Misbar</a>
+      <a href="#">Who We Are</a>
+      <a href="#">Quality &amp; Compliance</a>
+      <a href="#">Sustainability</a>
+    </div>
+    <div class="footer-col">
+      <h4>Products</h4>
+      <a href="#">Base Oils</a>
+      <a href="#">Hydrocarbon Blends</a>
+      <a href="#">Specialty Fluids</a>
+      <a href="#">Custom Solutions</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="#">Contact</a>
+      <a href="#">Sales Enquiries</a>
+      <a href="#">Technical Support</a>
+      <a href="#">Safety Data Sheets</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p class="footer-text">
+        Misbar Energy<br />
+        Industrial Area, Karachi<br />
+        Pakistan
+      </p>
+      <p class="footer-text">
+        Email: info@misbarenergy.com<br />
+        Phone: +92-000-0000000
+      </p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-left">
+      <span>© 2025 Misbar Energy. All rights reserved.</span>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+    </div>
+
+    <div class="footer-bottom-right">
+      <div class="footer-lang">
+        <span class="lang-icon">🌐</span>
+        <select aria-label="Language select">
+          <option selected>English (EN)</option> 
+          <option>العربية (AR)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+</body>
+</html>

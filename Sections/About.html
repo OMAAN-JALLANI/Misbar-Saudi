@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About Misbar – Misbar Energy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --primary: #0B3C5D;
+      --secondary: #1F4E79;
+      --accent: #00B8D9;
+      --bg-dark: #050B13;
+      --bg-light: #F4F6F8;
+      --text-dark: #111827;
+      --text-light: #FFFFFF;
+      --muted: #9CA3AF;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    }
+
+    body {
+      background: var(--bg-dark);
+      color: var(--text-light);
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* Navbar (same as home) */
+    .navbar {
+      background: rgba(5, 11, 19, 0.95);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 0.75rem 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-box {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text-light);
+    }
+
+    .nav-logo span {
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 0.25rem;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-light);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a.active {
+      color: var(--text-light);
+    }
+
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-btn {
+      background: var(--accent);
+      color: #001018;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      border: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease,
+        background 0.15s ease;
+      box-shadow: 0 10px 25px rgba(0, 184, 217, 0.25);
+    }
+
+    .nav-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 35px rgba(0, 184, 217, 0.35);
+      background: #16c4e3;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .navbar {
+        padding-inline: 1.25rem;
+      }
+    }
+.logo-shadow {
+   height: 55px;
+  width: 150px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.35);
+  padding: 4px;
+  background: #ffffff;
+}
+    /* About hero */
+    .about-hero {
+      padding: 3.5rem 5vw 2.5rem;
+      background: radial-gradient(circle at top left, #12263d, #050b13);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .about-hero-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .about-kicker {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+
+    .about-hero h1 {
+      font-size: clamp(2rem, 2.7vw + 1.1rem, 2.6rem);
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+
+    .about-hero p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 32rem;
+    }
+
+    .about-hero-meta {
+      margin-top: 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .about-hero-meta span strong {
+      color: var(--text-light);
+    }
+
+    .about-hero-right {
+      border-radius: 1.3rem;
+      padding: 1.25rem 1.5rem;
+      background: rgba(15, 23, 42, 0.82);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      backdrop-filter: blur(14px);
+      font-size: 0.9rem;
+      color: var(--muted);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+    }
+
+    .about-hero-right h3 {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .about-hero-right p {
+      font-size: 0.84rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+      .about-hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* Strengths grid */
+    .section {
+      padding: 3rem 5vw;
+    }
+
+    .section-light {
+      background: #f4f6f8;
+      color: var(--text-dark);
+    }
+
+    .section-dark {
+      background: #050b13;
+      color: var(--text-light);
+    }
+
+    .section-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      margin-bottom: 1.75rem;
+    }
+
+    .section-kicker {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: #4b5563;
+      max-width: 32rem;
+      line-height: 1.5;
+    }
+
+    .strengths-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.4rem;
+    }
+
+    .strength-card {
+      border-radius: 1.1rem;
+      padding: 1rem 1.1rem;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.04);
+    }
+
+    .strength-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #6b7280;
+      margin-bottom: 0.4rem;
+    }
+
+    .strength-card p {
+      font-size: 0.9rem;
+      color: #111827;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+      .strengths-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Vision & Mission */
+    .vision-mission {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .vm-card {
+      border-radius: 1.1rem;
+      padding: 1.1rem 1.2rem 1.3rem;
+      background: rgba(15, 23, 42, 0.82);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      backdrop-filter: blur(10px);
+    }
+
+    .vm-label {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .vm-title {
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .vm-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .vision-mission {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Values */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .value-card {
+      border-radius: 1rem;
+      padding: 0.9rem 1rem;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      min-height: 110px;
+    }
+
+    .value-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .value-text {
+      font-size: 0.85rem;
+      color: #4b5563;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 900px) {
+      .values-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Certifications */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .cert-card {
+      border-radius: 1rem;
+      padding: 0.9rem 1rem;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cert-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .cert-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-light);
+      margin-bottom: 0.2rem;
+    }
+
+    .cert-text {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .cert-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at top left,
+        rgba(0, 184, 217, 0.16),
+        transparent 60%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    @media (max-width: 900px) {
+      .cert-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .cert-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Footer (same pattern as we designed) */
+    .site-footer {
+      background: #050b13;
+      border-top: 1px solid rgba(148, 163, 184, 0.2);
+      padding: 2.5rem 5vw 1.25rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .footer-top {
+      max-width: 1120px;
+      margin: 0 auto 1.75rem;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 2rem;
+    }
+
+    .footer-col h4 {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-col a {
+      display: block;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      margin-bottom: 0.4rem;
+      transition: color 0.15s ease;
+    }
+
+    .footer-col a:hover {
+      color: var(--accent);
+    }
+
+    .footer-text {
+      font-size: 0.8rem;
+      line-height: 1.5;
+      margin-bottom: 0.6rem;
+      color: var(--muted);
+    }
+
+    .footer-bottom {
+      max-width: 1120px;
+      margin: 0 auto;
+      border-top: 1px solid rgba(148, 163, 184, 0.28);
+      padding-top: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-bottom-left {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .footer-bottom-left a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      border-left: 1px solid rgba(148, 163, 184, 0.4);
+      padding-left: 0.75rem;
+    }
+
+    .footer-bottom-left a:hover {
+      color: var(--accent);
+    }
+
+    .footer-bottom-left span {
+      font-size: 0.78rem;
+    }
+
+    .footer-bottom-right {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .footer-lang {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.8);
+    }
+
+    .footer-lang select {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-size: 0.8rem;
+      outline: none;
+      padding-right: 0.5rem;
+      cursor: pointer;
+    }
+
+    .footer-lang option {
+      color: #111827;
+    }
+
+    .lang-icon {
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 900px) {
+      .footer-top {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .footer-top {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-bottom-left {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-bottom-left a {
+        border-left: none;
+        padding-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+   
+   <header class="navbar">
+    <div class="nav-logo">
+  <img class="logo-shadow" src="../Images/logo.webp" alt="Misbar Logo"> 
+</div>
+    <nav class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="./About.html">About</a>
+      <a href="./Product.html">Products</a>
+      <a href="./Quality.html">Quality</a>
+      <a href="./Contact.html">Contact</a>
+      <a href="./CTA.html" class="nav-btn" style="color: white;">Get in touch</a>
+    </nav>
+  </header>
+
+  <!-- ABOUT HERO -->
+  <section class="about-hero">
+    <div class="about-hero-inner">
+      <div>
+        <div class="about-kicker">About Misbar</div>
+        <h1>Refining hydrocarbon solutions for Saudi industry.</h1>
+        <p>
+          Misbar Energy refines, processes and supplies hydrocarbon feedstocks that
+          support industrial growth in Saudi Arabia and across the region. From
+          raw materials to refined products, we focus on safety, reliability and
+          consistent quality.
+        </p>
+        <div class="about-hero-meta">
+          <span><strong>Process-driven</strong> refining operations</span>
+          <span><strong>Local production</strong> with regional reach</span>
+        </div>
+      </div>
+      <aside class="about-hero-right">
+        <h3>Our Commitment</h3>
+        <p>
+          We operate with disciplined process control, modern manufacturing assets
+          and an integrated supply chain. This allows us to deliver hydrocarbon
+          products that meet the expectations of domestic and regional clients in
+          multiple industrial sectors.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- OUR STRENGTHS -->
+  <section class="section section-light">
+    <div class="section-inner">
+      <header class="section-header">
+        <div class="section-kicker">Our Strengths</div>
+        <h2 class="section-title">What makes Misbar different.</h2>
+        <p class="section-subtitle">
+          We combine process innovation, modern facilities and integrated operations
+          to support stable, long-term supply for our customers.
+        </p>
+      </header>
+
+      <div class="strengths-grid">
+        <div class="strength-card">
+          <div class="strength-label">Process Innovation</div>
+          <p>
+            We continually enhance refining performance and process control to
+            improve efficiency, reliability and product quality.
+          </p>
+        </div>
+        <div class="strength-card">
+          <div class="strength-label">Modern Manufacturing</div>
+          <p>
+            Our facilities operate with precision equipment and defined procedures
+            to maintain consistency across every production batch.
+          </p>
+        </div>
+        <div class="strength-card">
+          <div class="strength-label">Local Production</div>
+          <p>
+            We produce locally to support Saudi industrial growth, improve supply
+            stability and reduce dependency on imported feedstocks.
+          </p>
+        </div>
+        <div class="strength-card">
+          <div class="strength-label">Integrated Operations</div>
+          <p>
+            We manage the full process from raw materials to refined products,
+            coordinating logistics and quality at every stage.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISION & MISSION -->
+  <section class="section section-dark">
+    <div class="section-inner">
+      <header class="section-header">
+        <div class="section-kicker">Direction</div>
+        <h2 class="section-title">Vision &amp; Mission</h2>
+      </header>
+
+      <div class="vision-mission">
+        <div class="vm-card">
+          <div class="vm-label">Our Vision</div>
+          <h3 class="vm-title">Leading in local refining and supply.</h3>
+          <p>
+            To lead in the local refining and supply of hydrocarbon feedstocks that
+            support Saudi industry and regional growth.
+          </p>
+        </div>
+        <div class="vm-card">
+          <div class="vm-label">Our Mission</div>
+          <h3 class="vm-title">Safe, efficient and reliable delivery.</h3>
+          <p>
+            To refine, process, and deliver hydrocarbon products safely and
+            efficiently, supporting local industries through consistent quality and
+            reliable supply.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section section-light">
+    <div class="section-inner">
+      <header class="section-header">
+        <div class="section-kicker">Our Values</div>
+        <h2 class="section-title">How we work every day.</h2>
+      </header>
+
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-title">Integrity</div>
+          <p class="value-text">
+            We act responsibly and transparently in every operation and decision.
+          </p>
+        </div>
+        <div class="value-card">
+          <div class="value-title">Excellence</div>
+          <p class="value-text">
+            We pursue high standards in refining, safety and service delivery.
+          </p>
+        </div>
+        <div class="value-card">
+          <div class="value-title">Sustainability</div>
+          <p class="value-text">
+            We minimise waste, optimise resource usage and respect the environment.
+          </p>
+        </div>
+        <div class="value-card">
+          <div class="value-title">Innovation</div>
+          <p class="value-text">
+            We apply technology and process improvement to enhance product quality
+            and performance.
+          </p>
+        </div>
+        <div class="value-card">
+          <div class="value-title">Customer Focus</div>
+          <p class="value-text">
+            We deliver dependable products and support to every client we serve.
+          </p>
+        </div>
+        <div class="value-card">
+          <div class="value-title">Collaboration</div>
+          <p class="value-text">
+            We build strong partnerships across ChemRef's industrial network and
+            with our key stakeholders.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS (BRAND / ISO AREA) -->
+  <section class="section section-dark">
+    <div class="section-inner">
+      <header class="section-header">
+        <div class="section-kicker">Standards &amp; Certifications</div>
+        <h2 class="section-title">Recognised quality frameworks.</h2>
+        <p class="section-subtitle" style="color: var(--muted);">
+          Misbar Energy operates under established international standards to
+          support safe, consistent and compliant manufacturing.
+        </p>
+      </header>
+
+      <div class="cert-grid">
+        <div class="cert-card">
+          <div class="cert-label">ISO</div>
+          <div class="cert-title">ISO 14001 : 2015</div>
+          <p class="cert-text">
+            Environmental management systems that help us reduce impact and manage
+            resources responsibly.
+          </p>
+        </div>
+        <div class="cert-card">
+          <div class="cert-label">ISO</div>
+          <div class="cert-title">ISO 4501 : 2008</div>
+          <p class="cert-text">
+            Occupational health and safety practices that support safe workplaces
+            for our teams and partners.
+          </p>
+        </div>
+        <div class="cert-card">
+          <div class="cert-label">ISO</div>
+          <div class="cert-title">ISO 22716</div>
+          <p class="cert-text">
+            Good manufacturing practice guidelines, supporting controlled and
+            traceable production processes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="./about.html">About Misbar</a>
+        <a href="#">Who We Are</a>
+        <a href="./quality.html">Quality &amp; Compliance</a>
+        <a href="#">Sustainability</a>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <a href="./products.html">Base Oils</a>
+        <a href="./products.html">Hydrocarbon Blends</a>
+        <a href="./products.html">Specialty Fluids</a>
+        <a href="./products.html">Custom Solutions</a>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="./contact.html">Contact</a>
+        <a href="./contact.html">Sales Enquiries</a>
+        <a href="./contact.html">Technical Support</a>
+        <a href="#">Safety Data Sheets</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p class="footer-text">
+          Misbar Energy<br />
+          Industrial Area, Saudi Arabia<br />
+        </p>
+        <p class="footer-text">
+          Email: info@misbarenergy.com<br />
+          Phone: +966-00-0000000
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-left">
+        <span>© 2025 Misbar Energy. All rights reserved.</span>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+      </div>
+
+      <div class="footer-bottom-right">
+        <div class="footer-lang">
+          <span class="lang-icon">🌐</span>
+          <select aria-label="Language select">
+            <option selected>English (EN)</option>
+            <option>العربية (AR)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
