@@ -381,6 +381,175 @@
   }
 }
 
+/* FOOTER */
+.site-footer {
+  background: #050b13;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+  padding: 2.5rem 5vw 1.25rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.footer-top {
+  max-width: 1120px;
+  margin: 0 auto 1.75rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.footer-col h4 {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.footer-col a {
+  display: block;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.82rem;
+  margin-bottom: 0.4rem;
+  transition: color 0.15s ease;
+}
+
+.footer-col a:hover {
+  color: var(--accent);
+}
+
+.footer-text {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  margin-bottom: 0.6rem;
+  color: var(--muted);
+}
+
+.footer-bottom {
+  max-width: 1120px;
+  margin: 0 auto;
+  border-top: 1px solid rgba(148, 163, 184, 0.28);
+  padding-top: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-bottom-left {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.footer-bottom-left a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.8rem;
+  border-left: 1px solid rgba(148, 163, 184, 0.4);
+  padding-left: 0.75rem;
+}
+
+.footer-bottom-left a:hover {
+  color: var(--accent);
+}
+
+.footer-bottom-left span {
+  font-size: 0.78rem;
+}
+
+.footer-bottom-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footer-lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.footer-lang select {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 0.8rem;
+  outline: none;
+  padding-right: 0.5rem;
+  cursor: pointer;
+}
+
+.footer-lang option {
+  color: #111827;
+}
+
+.lang-icon {
+  font-size: 0.8rem;
+}
+
+@media (max-width: 900px) {
+  .footer-top {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-bottom-left {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-bottom-left a {
+    border-left: none;
+    padding-left: 0;
+  }
+}
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        padding-top: 2.5rem;
+      }
+
+      .hero-media {
+        order: -1;
+      }
+
+      .navbar {
+        padding-inline: 1.25rem;
+      }
+
+      .hero {
+        padding-inline: 1.25rem;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+
+      .footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
 </style>
 </head>
 <body>
@@ -493,7 +662,62 @@
 
   </div>
 </section>
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About Misbar</a>
+      <a href="#">Who We Are</a>
+      <a href="#">Quality &amp; Compliance</a>
+      <a href="#">Sustainability</a>
+    </div>
+    <div class="footer-col">
+      <h4>Products</h4>
+      <a href="#">Base Oils</a>
+      <a href="#">Hydrocarbon Blends</a>
+      <a href="#">Specialty Fluids</a>
+      <a href="#">Custom Solutions</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="#">Contact</a>
+      <a href="#">Sales Enquiries</a>
+      <a href="#">Technical Support</a>
+      <a href="#">Safety Data Sheets</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p class="footer-text">
+        Misbar Energy<br />
+        Industrial Area, Karachi<br />
+        Pakistan
+      </p>
+      <p class="footer-text">
+        Email: info@misbarenergy.com<br />
+        Phone: +92-000-0000000
+      </p>
+    </div>
+  </div>
 
+  <div class="footer-bottom">
+    <div class="footer-bottom-left">
+      <span>© 2025 Misbar Energy. All rights reserved.</span>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+    </div>
+
+    <div class="footer-bottom-right">
+      <div class="footer-lang">
+        <span class="lang-icon">🌐</span>
+        <select aria-label="Language select">
+          <option selected>English (EN)</option> 
+          <option>العربية (AR)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</footer>
 <script>
   function toggleMenu() {
     document.getElementById("mobileMenu").classList.toggle("active");
