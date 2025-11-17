@@ -135,6 +135,67 @@
   padding: 4px;
   background: #ffffff;
 }
+/* Logo fix */
+.nav-logo img {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Hamburger icon */
+.mobile-menu-icon {
+  display: none;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* MOBILE VIEW */
+@media (max-width: 768px) {
+
+  .mobile-menu-icon {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 65px;
+    right: 20px;
+    background: #0c0c18;
+    padding: 20px 25px;
+    border-radius: 12px;
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+    width: 210px;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+    z-index: 999;
+  }
+
+  .nav-links a {
+    color: white !important;
+    font-size: 1rem;
+  }
+
+  /* Show menu */
+  .nav-links.active {
+    display: flex;
+    animation: fadeIn 0.25s ease-out;
+  }
+
+  /* Hide desktop links */
+  .nav-links a::after {
+    display: none;
+  }
+}
+
+/* Smooth animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
 
 
@@ -325,20 +386,26 @@
 <body>
 
 <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="nav-logo">
-  <img class="logo-shadow" src="../Images/logo.webp" alt="Misbar Logo"> 
-</div>
+ <header class="navbar">
+  <div class="nav-logo">
+    <img class="logo-shadow" src="../Images/logo.webp" alt="Misbar Logo">
+  </div>
 
-    <nav class="nav-links">
-      <a href="../index.html">Home</a>
-      <a href="./About.html">About</a>
-      <a href="./Product.html">Products</a>
-      <a href="./Quality.html">Quality</a>
-      <a href="./Contact.html">Contact</a>
-      <a href="./CTA.html" class="nav-btn" style="color: white;">Get in touch</a>
-    </nav>
-  </header>
+  <!-- Hamburger Icon -->
+  <div class="mobile-menu-icon" onclick="toggleMenu()">
+    &#9776;
+  </div>
+
+  <nav class="nav-links" id="mobileMenu">
+    <a href="../index.html">Home</a>
+    <a href="./About.html">About</a>
+    <a href="./Product.html">Products</a>
+    <a href="./Quality.html">Quality</a>
+    <a href="./Contact.html">Contact</a>
+    <a href="./CTA.html" class="nav-btn">Get in touch</a>
+  </nav>
+</header>
+
 
 <!-- Heading -->
 <section class="heading-section">
@@ -372,16 +439,16 @@
 <!-- Lower Marquee -->
 <div class="marquee-container">
   <div class="marquee-track marquee-lower">
-    <img src="../Images/31.webp" width="260" alt="Plant 4">
+    <img src="../Images/1.webp" width="260" alt="Plant 4">
     <img src="../Images/32.webp" width="200" alt="Plant 5">
     <img src="../Images/33.webp" width="240" alt="Lab 5">
     <img src="../Images/35.webp" width="220" alt="Product 4">
     <img src="../Images/34.webp" width="230" alt="Product 5">
-    <img src="../Images/36.jpeg" width="250" alt="Plant 6">
-    <img src="../Images/37.jpeg" width="210" alt="Lab 6">
-    <img src="../Images/38.jpeg" width="200" alt="Product 6">
-    <img src="../Images/39.jpeg" width="260" alt="Product 7">
-    <img src="../Images/30.jpeg" width="230" alt="Product 8">
+    <img src="../Images/36.webp" width="250" alt="Plant 6">
+    <img src="../Images/37.webp" width="210" alt="Lab 6">
+    <img src="../Images/38.webp" width="200" alt="Product 6">
+    <img src="../Images/39.webp" width="260" alt="Product 7">
+    <img src="../Images/30.webp" width="230" alt="Product 8">
   </div>
 </div>
 
@@ -427,6 +494,11 @@
   </div>
 </section>
 
+<script>
+  function toggleMenu() {
+    document.getElementById("mobileMenu").classList.toggle("active");
+  }
+</script>
 
 </body>
 </html>
